@@ -1,28 +1,27 @@
-import java.awt.event.ContainerAdapter;
-
 public class Main {
     public static void main(String[] args) {
-        // Exemplo de uso da classe Conta
-        Conta minhaConta = new Conta(1000.0);
+        AreaCalculavel quadrado = new Quadrado(5.5);
+        AreaCalculavel retangulo = new Retangulo(8.4, 6.7 );
 
-        System.out.println("Saldo inicial: R$" + minhaConta.getSaldo());
+        // Calcule e imprima as áreas
+        System.out.println("Área do Quadrado: " + quadrado.calcularArea());
+        System.out.println("Área do Retângulo: " + retangulo.calcularArea());
 
-        minhaConta.deposita(500.0);
-        minhaConta.saca(200.0);
+        Conta contaCorrente = new ContaCorrente(1000);
+        Conta contaPoupanca = new ContaPoupanca(2000);
+        ContaInvestimento contaInvestimento = new ContaPoupancaInvestimento(3000);
 
-        System.out.println("Saldo após operações: R$" + minhaConta.getSaldo());
+        contaCorrente.depositar(500);
+        contaCorrente.sacar(200);
+        System.out.println("Saldo da Conta Corrente: " + contaCorrente.getSaldo());
 
-        minhaConta.atualizaConta(5.0); // Atualiza a conta com uma taxa de 5%
+        contaPoupanca.depositar(1000);
+        contaPoupanca.sacar(400);
+        System.out.println("Saldo da Conta Poupança: " + contaPoupanca.getSaldo());
 
-        ContaCorrente cc = new ContaCorrente();
-        ContaPoupanca cp = new ContaPoupanca();
-
-        AtualizadorDeContas atualizador = new AtualizadorDeContas(0.1);
-        atualizador.roda(minhaConta);
-        atualizador.roda(cc);
-        atualizador.roda(cp);
-
-        System.out.println("Saldo total no banco: R$" + atualizador.getSaldoTotal());
-
-        }
+        contaInvestimento.depositar(2000);
+        contaInvestimento.sacar(600);
+        System.out.println("Saldo da Conta Poupança Investimento: " + contaInvestimento.getSaldo());
+        System.out.println("Rendimento da Conta Poupança Investimento: " + ((ContaPoupancaInvestimento) contaInvestimento).calcularRendimento());
     }
+}

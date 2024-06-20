@@ -1,7 +1,7 @@
-public class ContaPoupanca implements Conta{
+public class ContaPoupancaInvestimento implements ContaInvestimento {
     private double saldo;
 
-    public ContaPoupanca(double saldoInicial) {
+    public ContaPoupancaInvestimento(double saldoInicial) {
         this.saldo = saldoInicial;
     }
 
@@ -22,5 +22,11 @@ public class ContaPoupanca implements Conta{
     @Override
     public double getSaldo() {
         return saldo;
+    }
+
+    @Override
+    public double calcularRendimento() {
+        // Implemente o cálculo de rendimento específico para Conta Poupança Investimento
+        return saldo * 0.03; // Exemplo simples de rendimento
     }
 }
