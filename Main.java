@@ -1,32 +1,28 @@
-import java.util.concurrent.atomic.DoubleAdder;
+import java.awt.event.ContainerAdapter;
+
 public class Main {
-    //Quesões de 1 á 2:
-    public static void main (String[] args){
-        Data dataEntrada1 = new Data(01,01,2023);
-        // Questão 6:
-        // No print no lugar de data de entrada substitua por ("") para escrever a data de entrada manualmente, o mesmo vale para o print do funcionario2.
-        Funcionario funcionario1 = new Funcionario("leonam", "bar", 2000.0, dataEntrada1,"12345678910");
-        System.out.println("Salário anual do "+funcionario1.getDepartamento()+": "+ funcionario1.calcularGanhoAnual());
-        System.out.println("Salário com aumento podera ser  "+funcionario1.getSalario());
-        funcionario1.recerbeAumento(100.0);
-        System.out.println("Salário do "+ funcionario1.getDepartamento() +" atual é de "+ funcionario1.getSalario());
+    public static void main(String[] args) {
+        // Exemplo de uso da classe Conta
+        Conta minhaConta = new Conta(1000.0);
 
-    //Questão 3:
-        funcionario1.mostra();
+        System.out.println("Saldo inicial: R$" + minhaConta.getSaldo());
 
-    //Questão 4:
-        //Nesta questão ele puxa o funcionario 1 criado acima e compara com o funcionario2 criado nesta questão.
+        minhaConta.deposita(500.0);
+        minhaConta.saca(200.0);
 
-        Data dataEntrada2 = new Data(1,1,2023);
-        Funcionario funcionario2 = new Funcionario("João ", "vendas", 5000.0,dataEntrada2, "123456789");
+        System.out.println("Saldo após operações: R$" + minhaConta.getSaldo());
 
-        System.out.println("Comparação usando ==: " + (funcionario1 == funcionario2)); // Resultado será falso
+        minhaConta.atualizaConta(5.0); // Atualiza a conta com uma taxa de 5%
 
-        Funcionario referenciaFuncionario2 = funcionario2; // Criando outra referência para funcionario2
+        ContaCorrente cc = new ContaCorrente();
+        ContaPoupanca cp = new ContaPoupanca();
 
-        System.out.println("Comparação usando == após criar nova referência: " + (funcionario2 == referenciaFuncionario2)); // Resultado será Verdadeiro
+        AtualizadorDeContas atualizador = new AtualizadorDeContas(0.1);
+        atualizador.roda(minhaConta);
+        atualizador.roda(cc);
+        atualizador.roda(cp);
 
-        System.out.printf("Data formatada: "+ dataEntrada1.formatarData());
+        System.out.println("Saldo total no banco: R$" + atualizador.getSaldoTotal());
+
+        }
     }
-}
-
